@@ -1,0 +1,149 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> 
+<script type="text/javascript" src="https://blobtera.000webhostapp.com/data.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="cont_h">
+<div class="stamp">
+	Safepoint
+</div>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="donate">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="24BXV4KCHEAKE" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_MA/i/scr/pixel.gif" width="1" height="1" />
+</form>
+<div id="to_manual" onclick="to_manual()">
+<img src="icon/book.png">
+<span>Manual</span>
+</div>
+<div id="to_home" onclick="to_home()">
+<img src="icon/house.png">
+<span>Home</span>
+</div>
+<h1 id="title">We Supporte <span id="num_com">0</span> Company For Free</h1>
+	<table style="width:100%;margin-top:60px !important;" id="table_list">
+	  <tr>
+		<th>Company</th>
+		<th>Last update</th> 
+		<th>Action</th>
+		<th>Open at</th>
+		<th>Close at</th>
+	  </tr>
+	  <!-- the div list -->
+	</table>
+	<div class="manual" id="manual">
+		<h1>Our algorithms, can make 2 cases (BUYING OR NOT DETECTED).</h1>
+		<ul>
+			<li>
+				<h3 style="color:#fff;">Case 1:</h3>
+				<table style="width:100%;" id="" class="manual-table">
+				 <tr>
+					<th>Company</th>
+					<th>Last update</th> 
+					<th>Action</th>
+					<th>Open at</th>
+					<th>Close at</th>
+				 </tr>
+				  
+				 <tbody> 
+				 <tr id=""><td><ul class="data-com"><li><img class="logo" src="https://etoro-cdn.etorostatic.com/market-avatars/t/150x150.png"></li><div class="iden"><li><span class="sub-name">t</span></li><li><span class="name"></span></li></div></ul></td><td>19:55:00 (update evry 5min)</td><td>NOT DEDECTED</td><td>--------</td><td>--------</td></tr></tbody>
+				</table>
+				
+				<div class="quom">
+					<p>- In this case we have no action detected we can't risk now, we need waiting.</p>
+				</div>
+			</li>
+			<hr style="margin-top:10px;margin-bottom:10px;color:#fff;">
+			<li>
+				<h3 style="color:#fff;">Case 2:</h3>
+				<table style="width:100%;" id="" class="manual-table">
+				 <tr>
+					<th>Company</th>
+					<th>Last update</th> 
+					<th>Action</th>
+					<th>Open at</th>
+					<th>Close at</th>
+				 </tr>
+				  
+				 <tbody> 
+				 <tr id=""><td><ul class="data-com"><li><img class="logo" src="https://etoro-cdn.etorostatic.com/market-avatars/t/150x150.png"></li><div class="iden"><li><span class="sub-name">t</span></li><li><span class="name"></span></li></div></ul></td><td>19:55:00 (update evry 5min)</td><td>BUY</td><td>~7.5$</td><td>[7.9$ - 8.5$]</td></tr></tbody>
+				</table>
+				
+				<div class="quom">
+					<p>- In this case we have an action is BUYING, you can now open when is reach to value of "open at" and (sell or take profit) whatever you want, but we recommande a range "Close at".</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<script>
+var mydata = JSON.parse(data);
+len_arr = mydata['data'].length;
+var back_one = 0;
+
+document.getElementById("num_com").innerHTML = len_arr;
+for(i = 0;i < len_arr;i++){
+	var old_html = $("#table_list").html();
+	var total_html = old_html+'<tr id="com_'+i+'"></tr>';
+	document.getElementById("table_list").innerHTML = total_html;
+	var name = mydata['data'][i]['name'];
+	var statue = mydata['data'][i]['statue'];
+	var open_at = mydata['data'][i]['open_at'];
+	var close_at_f = mydata['data'][i]['close_at_f'];
+	var close_at_s = mydata['data'][i]['close_at_s'];
+	var timestamps = mydata['data'][i]['timestamps'];
+	
+	var date = new Date(timestamps*1000);
+	var hours = date.getHours();
+	var minutes = "0" + date.getMinutes();
+	var seconds = "0" + date.getSeconds();
+	var timestamps = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+	
+	
+	if(statue == "BUY"){
+		open_at = "~"+open_at+"$";
+		close_at_f = close_at_f+"$";
+		close_at_s = close_at_s+"$";
+	}
+	
+	if(name == "bb"){
+		name = "bbry";
+	}
+	if(statue == "BUY"){
+		document.getElementById("com_"+i).innerHTML = '<td ><ul class="data-com"><li><img class="logo" src="https://etoro-cdn.etorostatic.com/market-avatars/'+name+'/150x150.png"></li><div class="iden"><li><span class="sub-name">'+name+'</span></li><li><span class="name"></span></li></div></ul></td><td>'+timestamps+' (update evry 5min)</td><td>'+statue+'</td><td>'+open_at+'</td><td>['+close_at_f+' - '+close_at_s+']</td>'; 
+	}else{
+		
+		new_id = len_arr - back_one;
+		document.getElementById("com_"+i).innerHTML = '<td ><ul class="data-com"><li><img class="logo" src="https://etoro-cdn.etorostatic.com/market-avatars/'+name+'/150x150.png"></li><div class="iden"><li><span class="sub-name">'+name+'</span></li><li><span class="name"></span></li></div></ul></td><td>'+timestamps+' (update evry 5min)</td><td>'+statue+'</td><td>'+open_at+'</td><td>'+close_at_f+'</td>'; 
+		back_one++;
+	}
+	 
+}
+
+var old_title = $("#title").text();
+
+function to_manual(){
+	$("#table_list").css("display","none");
+	$("#to_manual").css("display","none");
+	$("#title").text("manual");
+	$("#manual").css("display","block");
+	$("#to_home").css("display","block");
+}
+function to_home(){
+	$("#to_home").css("display","none");
+	$("#manual").css("display","none");
+	$("#title").text(old_title);
+	$("#table_list").css("display","inline-table");
+	$("#to_manual").css("display","block");
+}
+setInterval(function(){ location.reload(); }, 300000);
+</script>
+</body>
+</html>

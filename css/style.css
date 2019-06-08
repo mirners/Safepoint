@@ -1,0 +1,148 @@
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+    
+font-family: 'Cinzel', serif;
+
+}
+body{
+	background:#000;
+}
+table, th{
+  border-bottom: 5px solid #219be7;
+  border-collapse: collapse;
+}
+
+table{
+	background:#fff;
+	margin-top:40px;
+	border-radius:5px;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+td {
+  border-bottom: 5px solid #219be7;
+  border-collapse: collapse;
+  padding-left:20px;
+  padding-right:20px;
+}
+tr{
+	font-weight: 600;
+}
+tr:last-child{
+  border-bottom-left-radius:5px !important;
+  border-bottom-right-radius:5px !important;
+}
+.stamp{
+    font-family: 'Cinzel', serif;
+	font-size:30px;
+	position:absolute;
+	border:2px dashed #fff;
+	transform: rotate(-10deg);
+	padding:5px;
+	color:#fff;
+}
+th{
+  height:50px;
+  text-align: left;    
+  padding-left:20px;
+  padding-right:20px;
+}
+table .logo{
+	width:60px;
+	height:60px;
+}
+table .data-com{
+	display:flex;
+	list-style:none;
+}
+
+table .iden{
+	margin-left:10px;
+	position:relative;
+	height:45px;
+}
+table .iden .sub-name{
+	font-size:24px;
+	font-weight:bold;
+}
+table .iden .name{
+	position:absolute;
+	bottom:0;
+	font-family:italic;
+	color:#444;
+}
+.cont_h {
+    width: 80%;
+    margin: 50px auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    background: #219be7;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.cont_h h1 {
+    text-align: center;
+    color: #fff;
+}
+.donate {
+    position: absolute;
+    right: 0px;
+}
+.manual{
+	display:none;
+	margin-top:50px;
+}
+.manual ul{
+	list-style:none;
+	
+}
+.manual .manual-table{
+	border-bottom:0;
+	border-radius:0px !important;
+	position:relative;
+	top:-30px;
+}
+.manual .manual-table th{
+	border-bottom:0;
+}
+.manual .quom{
+	background:#fff;
+	margin-top:0px;
+	padding:5px;
+	font-size:20px;
+	font-weight:bold;
+	position:relative;
+	top:-20px;
+}
+#to_manual{
+	position:absolute;
+	right:170px;
+	top:5px;
+	cursor:pointer;
+}
+
+#to_manual span{
+	display:block;
+	color:#fff;
+	font-weight:bold;
+}
+#to_home{
+	position:absolute;
+	right:170px;
+	top:5px;
+	cursor:pointer;
+	display:none;
+}
+#to_home span{
+	display:block;
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+}
