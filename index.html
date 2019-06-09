@@ -101,10 +101,20 @@ for(i = 0;i < len_arr;i++){
 	var timestamps = mydata['data'][i]['timestamps'];
 	
 	var date = new Date(timestamps*1000);
+	var month = date.getMonth();
+	month = month + 1;
+	if(month < 10){
+		month = "0"+month;
+	}
+	var day = date.getDate();
+	if(day < 10){
+		day = "0"+day;
+	}
 	var hours = date.getHours();
 	var minutes = "0" + date.getMinutes();
 	var seconds = "0" + date.getSeconds();
-	var timestamps = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+	var timestamps = month+'/'+day+' - '+ hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+	
 	
 	var name_img = false;
 	
